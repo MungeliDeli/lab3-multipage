@@ -1,7 +1,7 @@
 /* ==================== CSS Variables ==================== */
 :root {
   /* Colors */
-  --primary-color: #772905;
+  --primary-color: rgb(119, 41, 5);
   --btn-hover-color: #8d3005;
   --background-color-grey: #f8f8f8;
   --background-color-white: #ffffff;
@@ -12,7 +12,6 @@
   --font-secondary: "Roboto", sans-serif;
 
   /* Font size  */
-
   --font-h1-title: 36px;
 }
 
@@ -146,7 +145,6 @@ main {
   transition: all 0.3s ease-in-out;
 }
 
-/* Button Hover Effect */
 .hero-content .btn-order:hover {
   background-color: var(--btn-hover-color);
   transform: scale(1.1);
@@ -158,7 +156,6 @@ main {
   justify-content: center;
 }
 
-/* Hero Image Animation */
 .hero-image img {
   width: 500px;
   border-radius: 10px;
@@ -203,7 +200,6 @@ main {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Branch Hover Effect */
 .branch:hover {
   transform: translateY(-5px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
@@ -227,7 +223,7 @@ main {
   max-width: 1440px;
   margin: 0 auto;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--background-color-white);
 }
 
 .footer-content {
@@ -305,7 +301,7 @@ main {
 
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
+  box-shadow: rgba(119, 41, 5, 0.2) 0px 6px 16px;
 }
 
 .service-card-image img {
@@ -395,7 +391,7 @@ main {
 .contact-form button {
   padding: 12px;
   font-size: 18px;
-  color: white;
+  color: var(--background-color-white);
   background-color: var(--primary-color);
   border: none;
   border-radius: 5px;
@@ -409,11 +405,11 @@ main {
   transform: scale(1.05);
 }
 
-/* Responsive Design */
+/* MEDIA QUEREIS */
 
 @media (max-width: 1024px) {
-  /* ====home page responsivensess */
 
+  
   .hero {
     flex-direction: column;
     padding: 30px;
