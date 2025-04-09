@@ -1,11 +1,17 @@
 /* ==================== CSS Variables ==================== */
 :root {
-  /* Colors */
+  /* primary Colors */
   --primary-color: rgb(119, 41, 5);
   --btn-hover-color: #8d3005;
-  --background-color-grey: #f8f8f8;
-  --background-color-white: #ffffff;
-  --text-color: #333;
+
+  /* Theme colors */
+  --theme-background-color-grey: rgb(248, 248, 248);
+  --theme-background-color-white: #ffffff;
+  --theme-text-color: #333;
+  --theme-box-shadow: rgba(149, 157, 165, 0.2);
+
+  /* colors */
+  --text-color: #fff;
 
   /* Fonts */
   --font-primary: "Poppins", sans-serif;
@@ -65,10 +71,14 @@ img {
   }
 }
 
+body {
+  background-color: var(--theme-background-color-white);
+  color: var(--theme-text-color);
+}
+
 /* ==================== Header ==================== */
 #main-header {
-  max-width: 1440px;
-  margin: 0 auto;
+
   padding: 10px 50px;
   background-color: var(--primary-color);
   color: white;
@@ -94,12 +104,11 @@ img {
 }
 
 .navbar ul li:hover {
-  color: var(--background-color-grey);
+  color: var();
 }
 
 main {
-  max-width: 1440px;
-  margin: 0 auto;
+
   padding: 60px;
   display: flex;
   flex-direction: column;
@@ -111,9 +120,14 @@ main {
 .hero {
   padding: 60px;
   display: flex;
-  background: var(--background-color-grey);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  /* transition: all .3 ease-in; */
+  background-color: var(--theme-background-color-grey);
+
+  box-shadow: var(--theme-box-shadow) 0px 8px 24px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.hero:hover {
+  transform: translateY(-5px);
+  box-shadow: rgba(119, 41, 5, 0.2) 0px 6px 16px;
 }
 
 .hero-content {
@@ -139,7 +153,7 @@ main {
   padding: 15px 20px;
   border-radius: 5px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: all 0.3s ease-in-out;
@@ -195,14 +209,15 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background: var(--background-color-grey);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: var(--theme-background-color-grey);
+
+  box-shadow: var(--theme-box-shadow) 0px 4px 12px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .branch:hover {
   transform: translateY(-5px);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
+  box-shadow: rgba(119, 41, 5, 0.2) 0px 6px 16px;
 }
 
 .branch img {
@@ -211,7 +226,7 @@ main {
 }
 
 .branch img:hover {
-  width: 70px;
+  transform: scale(1.05);
 }
 
 .branch h2 {
@@ -220,10 +235,9 @@ main {
 
 /* ==================== Footer ==================== */
 #main-footer {
-  max-width: 1440px;
-  margin: 0 auto;
+  
   background-color: var(--primary-color);
-  color: var(--background-color-white);
+  color: var(--text-color);
 }
 
 .footer-content {
@@ -275,6 +289,7 @@ main {
 .services-section {
   width: 100%;
   text-align: center;
+  color: var(--theme-text-color);
 }
 
 .services-section h1 {
@@ -291,9 +306,10 @@ main {
 }
 
 .service-card {
-  background-color: var(--background-color-white);
+  background-color: var(--theme-background-color-grey);
+
   padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: var(--theme-box-shadow) 0px 4px 12px;
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -325,8 +341,8 @@ main {
 
 .service-card p {
   font-size: 16px;
-  color: var(--text-color);
-  opacity: 0.7;
+  color: var(--theme-text-color);
+  opacity: 0.9;
 }
 
 /* ==================== Contact Page Main Styling ==================== */
@@ -351,13 +367,20 @@ main {
 .contact-form {
   width: 100%;
   max-width: 600px;
-  background-color: var(--background-color-white);
+  background-color: var(--theme-background-color-grey);
+
   padding: 30px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: var(--theme-box-shadow) 0px 4px 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: rgba(119, 41, 5, 0.2) 0px 6px 16px;
 }
 
 .contact-form label {
@@ -368,17 +391,19 @@ main {
 
 .contact-form input,
 .contact-form textarea {
+  color: var(--theme-text-color);
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   transition: border-color 0.3s ease-in-out;
+  background-color: var(--theme-background-color-white);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--primary-color);
+  border-color: var(--btn-hover-color);
   outline: none;
 }
 
@@ -391,7 +416,7 @@ main {
 .contact-form button {
   padding: 12px;
   font-size: 18px;
-  color: var(--background-color-white);
+  color: var(--text-color);
   background-color: var(--primary-color);
   border: none;
   border-radius: 5px;
@@ -408,8 +433,6 @@ main {
 /* MEDIA QUEREIS */
 
 @media (max-width: 1024px) {
-
-  
   .hero {
     flex-direction: column;
     padding: 30px;
