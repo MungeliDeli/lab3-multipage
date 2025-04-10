@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // loading the first 4 
 
 const BRANCHES_CONTAINER = document.querySelector(".branches");
-const LOAD_MORE_BTN = document.getElementById("loadViewerBtn");
+const LOAD_MORE_BTN = document.getElementById("loadBtn");
 
 let cachedUsers = [];
 const imagePaths = Array.from(
