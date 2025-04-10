@@ -15,7 +15,7 @@ themeToggle.addEventListener("click", () => {
     .getPropertyValue("--theme-background-color-grey")
     .trim();
 
-    // set and save them to local storage
+  // set and save them to local storage
   if (currentBg === "#f8f8f8" || currentBg === "rgb(248, 248, 248)") {
     setDarkTheme();
     localStorage.setItem("theme", "dark");
@@ -45,8 +45,7 @@ function setLightTheme() {
 
 const form = document.querySelector(".contact-form");
 
-
-// validating form 
+// validating form
 if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -64,6 +63,7 @@ if (form) {
     const response = document.getElementById("response");
     if (response) {
       response.innerText = `Thanks, ${name}. We'll get back to you soon!`;
+      response.style.display = "block";
     } else {
       alert(`Thanks, ${name}. We'll get back to you soon!`);
     }
@@ -72,7 +72,6 @@ if (form) {
   });
 }
 
-
 // Fag display
 document.querySelectorAll(".question").forEach((q) => {
   q.addEventListener("click", () => {
@@ -80,8 +79,7 @@ document.querySelectorAll(".question").forEach((q) => {
   });
 });
 
-
-// real time clock 
+// real time clock
 function updateClock() {
   const now = new Date();
   let hours = now.getHours();
@@ -102,8 +100,7 @@ function pad(n) {
 setInterval(updateClock, 1000); //updating in real time every second
 updateClock();
 
-
-// back to top 
+// back to top
 const backToTopBtn = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
