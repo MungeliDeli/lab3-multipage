@@ -1,12 +1,12 @@
 # Davy mwansa 2021480704
 
 # Page Description
-    This is a fully responsive website about for a Movie Database utilizing the APIs provided by The Movie Database 
+- This is a fully responsive website about for a Movie Database utilizing the APIs provided by The Movie Database 
     with a homepage showing a hero section, showing the latest movies 
-    The site  include the Movies  page which shows the all movies and enables the visiters to search for any movie
-    the site  contains contact page that is validated.
-    The site  has a real time system clock in the header inplemented useing set interval
-    The site has a Theme that feature light and dark them  
+- The site  include the Movies  page which shows the all movies and enables the visiters to search for any movie
+- The site  contains contact page that is validated.
+- The site  has a real time system clock in the header inplemented useing set interval
+- The site has a Theme that feature light and dark them  
 
 
 # Features used 
