@@ -6,7 +6,7 @@
 
   /* Theme colors */
   --theme-background-color-grey: rgb(248, 248, 248);
-  --theme-background-color-white: #ffffff;
+  --theme-background-color-white: rgb(24, 24, 24);
   --theme-text-color: #333;
   --theme-box-shadow: rgba(149, 157, 165, 0.2);
 
@@ -71,14 +71,29 @@ img {
   }
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 body {
   background-color: var(--theme-background-color-white);
   color: var(--theme-text-color);
 }
+main {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* text-align: center; */
+}
 
 /* ==================== Header ==================== */
 #main-header {
-
   padding: 10px 50px;
   background-color: var(--primary-color);
   color: white;
@@ -88,7 +103,7 @@ body {
 }
 
 .logo img {
-  width: 120px;
+  width: 250px;
 }
 
 .navbar ul {
@@ -107,13 +122,24 @@ body {
   color: var();
 }
 
-main {
-
-  padding: 60px;
+.time-theme {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  /* text-align: center; */
+  gap: 20px;
+}
+
+#themeToggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+#themeToggle img {
+  background: var(--text-color);
+  padding: 3px;
+  border-radius: 50%;
 }
 
 /* ==================== Hero Section ==================== */
@@ -121,13 +147,9 @@ main {
   padding: 60px;
   display: flex;
   background-color: var(--theme-background-color-grey);
-
+  width: 90%;
   box-shadow: var(--theme-box-shadow) 0px 8px 24px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-.hero:hover {
-  transform: translateY(-5px);
-  box-shadow: rgba(119, 41, 5, 0.2) 0px 6px 16px;
 }
 
 .hero-content {
@@ -148,7 +170,8 @@ main {
   max-width: 490px;
 }
 
-.hero-content .btn-order {
+.hero-content .btn-order,
+#loadViewerBtn {
   width: fit-content;
   padding: 15px 20px;
   border-radius: 5px;
@@ -172,6 +195,7 @@ main {
 
 .hero-image img {
   width: 500px;
+  max-height: 600px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   animation: slideInRight 1s ease-out;
@@ -221,8 +245,9 @@ main {
 }
 
 .branch img {
-  width: 60px;
+  width: 100px;
   transition: all 0.1s ease-in;
+  border-radius: 50%;
 }
 
 .branch img:hover {
@@ -233,9 +258,51 @@ main {
   font-weight: 500;
 }
 
+/* =======FAQ======== */
+
+.faq-section {
+  width: 70%;
+  padding: 2rem;
+  color: var(--theme-text-color);
+  background-color: var(--theme-background-color-grey);
+
+  box-shadow: var(--theme-box-shadow) 0px 8px 24px;
+}
+
+.faq-section h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--theme-text-color);
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.faq-item .question {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.faq-item .answer {
+  display: none;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.faq-item .answer.visible {
+  display: block;
+}
+
 /* ==================== Footer ==================== */
+
 #main-footer {
-  
   background-color: var(--primary-color);
   color: var(--text-color);
 }
@@ -284,7 +351,7 @@ main {
   border-top: 1px solid rgba(255, 255, 255, 0.404);
 }
 
-/* ==================== Service Page Specific Styles ==================== */
+/* ====================  Service Page Specific Styles(Now the movies page  ==================== */
 
 .services-section {
   width: 100%;
@@ -295,7 +362,46 @@ main {
 .services-section h1 {
   font-size: var(--font-h1-title);
   font-weight: 600;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+}
+
+#query {
+  position: relative;
+  width: 50%;
+  padding: 10px;
+  border: 1px solid var(--theme-text-color);
+  margin-bottom: 30px;
+  background-color: var(--theme-background-color-grey);
+  color: var(--theme-text-color);
+  outline: none;
+  border-radius: 10px;
+}
+#loader-content {
+  display: none;
+  width: 100%;
+  height: 500px;
+}
+
+.no-results-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 90px 0;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 30px);
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .services-grid {
@@ -303,10 +409,12 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
   justify-items: center;
+  align-items: center;
 }
 
 .service-card {
   background-color: var(--theme-background-color-grey);
+  height: 700px;
 
   padding: 20px;
   box-shadow: var(--theme-box-shadow) 0px 4px 12px;
@@ -322,8 +430,8 @@ main {
 
 .service-card-image img {
   width: 100%;
+  max-height: 550px;
   height: auto;
-  max-height: 250px;
   object-fit: cover;
   border-radius: 5px;
   transition: transform 0.3s ease-in-out;
@@ -345,7 +453,7 @@ main {
   opacity: 0.9;
 }
 
-/* ==================== Contact Page Main Styling ==================== */
+/* ==================== Contact Page ==================== */
 .contact-section {
   margin: 20px;
   width: 50%;
@@ -412,7 +520,6 @@ main {
   min-height: 120px;
 }
 
-/* Submit Button */
 .contact-form button {
   padding: 12px;
   font-size: 18px;
@@ -430,6 +537,43 @@ main {
   transform: scale(1.05);
 }
 
+#response {
+  background-color: var(--theme-background-color-grey);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 128, 0, 0.475);
+  box-shadow: var(--theme-box-shadow) 0px 4px 12px;
+  padding: 30px;
+  margin-top: 20px;
+  color: green;
+  font-weight: 500;
+}
+
+/* ===Back to top ==== */
+
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#backToTop:hover {
+  background-color: var(--btn-hover-color);
+}
+#backToTop img {
+  width: 30px;
+}
+
 /* MEDIA QUEREIS */
 
 @media (max-width: 1024px) {
@@ -444,6 +588,17 @@ main {
 
   .contact-section {
     width: 80%;
+  }
+
+  .faq-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .faq-item .question {
+    font-size: 1.1rem;
+  }
+  #query {
+    width: 70%;
   }
 }
 
@@ -463,6 +618,7 @@ main {
   #main-header {
     flex-direction: column;
     gap: 10px;
+    align-items: center;
   }
   .navbar ul {
     gap: 20px;
@@ -493,6 +649,9 @@ main {
   .services-section h1 {
     margin-bottom: 20px;
   }
+  #query {
+    width: 90%;
+  }
 
   /* FOOTER */
   .footer-content {
@@ -508,6 +667,17 @@ main {
   .contact-section h1 {
     margin-bottom: 0px;
   }
+
+  /* FAQ */
+
+  .faq-section {
+    padding: 1.5rem;
+    width: 80%;
+  }
+
+  .faq-section h1 {
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -519,6 +689,9 @@ main {
   }
   /* ====home page  */
 
+  .hero {
+    width: 100%;
+  }
   .hero-content h1 {
     font-size: 32px;
   }
@@ -541,5 +714,24 @@ main {
   /* CONTACTS */
   .contact-section {
     width: 95%;
+  }
+
+  /* FAQ */
+
+  .faq-section {
+    padding: 1rem;
+    width: 95%;
+    margin-bottom: 2rem;
+  }
+  .faq-section h1 {
+    font-size: 1.3rem;
+  }
+
+  .faq-item .question {
+    font-size: 1rem;
+  }
+
+  .faq-item .answer {
+    font-size: 0.9rem;
   }
 }

@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Contact Us</title>
+    <title>Movies</title>
     <script src="theme.js"></script>
   </head>
   <body>
@@ -27,36 +27,18 @@
         <button id="themeToggle"><img src="images/dark.png" alt="" /></button>
       </div>
     </header>
+
     <main>
-      <section class="contact-section">
-        <h1>Contact Us</h1>
-        <p>Have questions? Reach out to us!</p>
-        <div
-          id="response"
-          
-        ></div>
-        <form class="contact-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" />
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" />
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5"></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Send Message</button>
+      <section class="services-section">
+        <h1>All Movies</h1>
+        <form id="form">
+          <input type="text" id="query" placeholder="Search for movies..." />
+          <div id="loader-content"><div id="loader" class="loader"></div></div>
         </form>
+        <div class="services-grid" id="main"></div>
       </section>
     </main>
- <button id="backToTop" title="Back to Top">
+    <button id="backToTop" title="Back to Top">
       <img src="images/up.png" alt="Back to Top" />
     </button>
     <footer id="main-footer">
@@ -75,8 +57,9 @@
           </div>
         </div>
       </div>
-      <p class="copyright">Davy Mwansa 2021480704 &copy; 2025</p>
+      <p class="copyright">Davy Mwansa 2021480704&copy; 2025</p>
     </footer>
-    <script type="module" src="script.js"></script>
+    <script src="fetch-movies.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

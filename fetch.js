@@ -2,53 +2,97 @@ const API_KEY = "api_key=48e3935c5f71efc8fac221cb8952350e";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 const IMG_PATH = "https://image.tmdb.org/t/p/w500";
-const SEARCHAPI = BASE_URL + "/search/movie?" + API_KEY;
 
-getMovies(API_URL);
-
-function getMovies(url) {
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data.results);
-
-      showMovies(data.results);
-    });
+// fetching the first 5 movies 
+async function fetchTopMovies() {
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    return data.results.slice(0, 5);
+  } catch (err) {
+    console.error("Failed to fetch top movies:", err);
+    return [];
+  }
 }
 
-const main = document.getElementById("main");
-const form = document.getElementById("form");
-const search = document.getElementById("query");
 
-function showMovies(data) {
-  main.innerHTML = ""; // Clear previous content
+document.addEventListener("DOMContentLoaded", async () => {
+  const heroTitle = document.querySelector(".hero-content h1");
+  const heroOverview = document.querySelector(".hero-content p");
+  const heroImage = document.querySelector(".hero-image img");
 
-  data.forEach((movie) => {
-    const { title, poster_path } = movie;
+  if (!heroTitle || !heroOverview || !heroImage) {
+    console.warn("Hero elements not found.");
+    return;
+  }
 
-    const altImg = "dee.jpg";
+  const movies = await fetchTopMovies();
+  if (movies.length === 0) return;
 
-    const card = document.createElement("div");
-    card.classList.add("card");
+  let index = 0;
 
-    const imgSrc = poster_path ? IMG_PATH + poster_path : altImg;
+  function updateHero(movie) {
+    heroTitle.textContent = movie.title;
+    heroOverview.textContent = movie.overview;
+    heroImage.src = IMG_PATH + movie.poster_path;
+    heroImage.alt = movie.title;
+  }
 
-    card.innerHTML = `
-      <img src="${imgSrc}" alt="${title}" class="moviePoster" />
-      <h3 class="movieTitle">${title}</h3>
+  updateHero(movies[index]); 
+
+  setInterval(() => {
+    index = (index + 1) % movies.length;
+    updateHero(movies[index]);
+  }, 10000); 
+});
+
+
+
+// fetching the users from als (top viewers )
+// loading the first 4 
+
+const BRANCHES_CONTAINER = document.querySelector(".branches");
+const LOAD_MORE_BTN = document.getElementById("loadViewerBtn");
+
+let cachedUsers = [];
+const imagePaths = Array.from(
+  { length: 8 },
+  (_, i) => `images/user${i + 1}.jpg`
+); 
+
+
+async function fetchUsers() {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await res.json();
+    cachedUsers = data.slice(0, 8); 
+    displayUsers(4); 
+  } catch (err) {
+    console.error("Failed to fetch users:", err);
+  }
+}
+
+
+function displayUsers(count) {
+  BRANCHES_CONTAINER.innerHTML = "";
+
+  cachedUsers.slice(0, count).forEach((user, index) => {
+    const div = document.createElement("div");
+    div.classList.add("branch");
+    div.innerHTML = `
+      <img src="${imagePaths[index]}" alt="User ${index + 1}" />
+      <h2>${user.name}</h2>
+      <p>@${user.username}</p>
     `;
-
-    main.appendChild(card);
+    BRANCHES_CONTAINER.appendChild(div);
   });
 }
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  main.innerHTML = "";
-  const searchItem = search.value;
 
-  if (searchItem) {
-    getMovies(SEARCHAPI + "&query=" + searchItem);
-    search.value = "";
-  }
+// loading the next 4
+LOAD_MORE_BTN.addEventListener("click", () => {
+  displayUsers(8);
+  LOAD_MORE_BTN.style.display = "none";
 });
+
+document.addEventListener("DOMContentLoaded", fetchUsers);

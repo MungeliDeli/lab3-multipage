@@ -10,94 +10,99 @@
     <link rel="icon" type="image/x-icon" href="images/logo.png" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Home Page</title>
-    <script>
-      (function () {
-        const savedTheme = localStorage.getItem("theme");
-        const root = document.documentElement;
-
-        if (savedTheme === "dark") {
-          root.style.setProperty("--theme-background-color-grey", "#1a1a1a");
-          root.style.setProperty("--theme-background-color-white", "#181818");
-          root.style.setProperty("--theme-text-color", "#f1f1f1");
-          root.style.setProperty("--theme-box-shadow", "#000");
-        } else {
-          root.style.setProperty("--theme-background-color-grey", "#f8f8f8");
-          root.style.setProperty("--theme-background-color-white", "#ffffff");
-          root.style.setProperty("--theme-text-color", "#333");
-          root.style.setProperty("--theme-box-shadow", "#959da5");
-        }
-      })();
-    </script>
+    <script src="theme.js"></script>
   </head>
   <body>
-    <header id="main-header">
-      <div class="logo"><img src="images/logo.png" alt="Restaurant" /></div>
-      <nav class="navbar">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Theatre</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button id="themeToggle">Switch Theme</button>
-    </header>
+    <div class="page-wrapper">
+      <header id="main-header">
+        <div class="logo"><img src="images/logo.png" alt="M-movies" /></div>
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movies.html">Theatre</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="time-theme">
+          <p class="clock">time will be here</p>
+          <button id="themeToggle"><img src="images/dark.png" alt="" /></button>
+        </div>
+      </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-content">
-          <h1>Welcome to Our Restaurant</h1>
-          <p>
-            Experience the finest culinary delights in town. Our chefs prepare
-            every dish with passion and the freshest ingredients to ensure an
-            unforgettable dining experience.
-          </p>
-          <a href="services.html" class="btn-order">Order Now</a>
-        </div>
-        <div class="hero-image">
-          <img src="images/shawarma.jpg" alt="Delicious Shawarma" />
-        </div>
-      </section>
+      <main>
+        <section class="hero">
+          <div class="hero-content">
+            <h1>Welcome to Mungli's Movie Database</h1>
+            <p>
+              Here you find the Lates and most popular movies, ready for you as
+              the come out just jump to the services section anf search for your
+              favourite movie , new or old
+            </p>
+            <a href="movies.html" class="btn-order">See More</a>
+          </div>
+          <div class="hero-image">
+            <img src="images/shawarma.jpg" alt="Delicious Shawarma" />
+          </div>
+        </section>
 
-      <section class="branches-section">
-        <h1>Our Branches</h1>
-        <div class="branches">
-          <div class="branch">
-            <img src="images/location.png" alt="" />
-            <h2>Unza Branch</h2>
-            <p>Along Great East Road</p>
-          </div>
-          <div class="branch">
-            <img src="images/location.png" alt="" />
-            <h2>Kulima Tower Branch</h2>
-            <p>Next to Iringa Mall</p>
-          </div>
-          <div class="branch">
-            <img src="images/location.png" alt="" />
-            <h2>Novare Mall Branch</h2>
-            <p>Opposite Save Mall Supermarket</p>
-          </div>
-        </div>
-      </section>
-    </main>
+        <section class="branches-section">
+          <h1>Top Viewers</h1>
+          <div class="branches"></div>
+          <button id="loadViewerBtn">Load More Viewers</button>
+        </section>
 
-    <footer id="main-footer">
-      <div class="footer-content">
-        <div class="footer-hours">
-          <h3>Hours</h3>
-          <p>Monday - Friday: 11am - 10pm</p>
-          <p>Saturday & Sunday: 10am - 11pm</p>
-        </div>
-        <div class="footer-social">
-          <h3>Connect With Us</h3>
-          <div class="social-links">
-            <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="images/twitter.png" alt="Twitter" /></a>
-            <a href="#"><img src="images/instagram.png" alt="Instagram" /></a>
+        <section class="faq-section">
+          <h1>Frequently Asked Questions</h1>
+          <div class="faq-item">
+            <h3 class="question">Can I stream movies on this site?</h3>
+            <p class="answer">
+              No, this site is only for browsing and discovering movie details.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="question">Where does the movie data come from?</h3>
+            <p class="answer">
+              All movie data is sourced from The Movie Database (TMDb) API.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="question">Is this site free to use?</h3>
+            <p class="answer">
+              Yes, it’s completely free for informational purposes.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="question">Can I search for upcoming releases?</h3>
+            <p class="answer">
+              Yes, you can search both new and upcoming movies.
+            </p>
+          </div>
+        </section>
+      </main>
+      <button id="backToTop" title="Back to Top">
+        <img src="images/up.png" alt="Back to Top" />
+      </button>
+
+      <footer id="main-footer">
+        <div class="footer-content">
+          <div class="footer-hours">
+            <h3>Hours</h3>
+            <p>Monday - Friday: 11am - 10pm</p>
+            <p>Saturday & Sunday: 10am - 11pm</p>
+          </div>
+          <div class="footer-social">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+              <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
+              <a href="#"><img src="images/twitter.png" alt="Twitter" /></a>
+              <a href="#"><img src="images/instagram.png" alt="Instagram" /></a>
+            </div>
           </div>
         </div>
-      </div>
-      <p class="copyright">Davy Mwansa 2021480704&copy; 2025</p>
-    </footer>
+        <p class="copyright">Davy Mwansa 2021480704&copy; 2025</p>
+      </footer>
+    </div>
+    <script src="fetch.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>
